@@ -25,11 +25,11 @@ public class MappingStreams {
 
     public IntStream doubleValuesInStream(IntStream numbers) {
         // hint: use the map() method to double the values in the stream.
-      return numbers.map(this::doubleNumber);// TODO
-    } 
+        return numbers.map(this::doubleNumber);// TODO
+    }
     private int doubleNumber(int number) {
-    return number * 2;
-}
+        return number * 2;
+    }
 
     /**
      * Returns a stream where all the numbers in the given stream are multiplied by
@@ -42,8 +42,8 @@ public class MappingStreams {
     public IntStream multiplyValuesInStream(IntStream numbers, int multiplier) {
         // hint: use the map() method to multiply the values in the stream.
         return numbers.map(new IntUnaryOperator() {
-            public int applyAsInt(int number) {
-                return  number * multiplier;
+                    public int applyAsInt(int number) {
+                        return  number * multiplier;
             }
         }); // TODO
     }
@@ -139,15 +139,15 @@ public class MappingStreams {
 
         // hint: see the mapToObj() method in IntStream
         return numbers.mapToObj(n -> {
-            if (n% 15 == 0) {
-                return "FizzBuzz";
-                
+                    if (n% 15 == 0) {
+                        return "FizzBuzz";
+
             }else if (n % 3 == 0) {
-                return "Fizz";
+                        return "Fizz";
             } else if (n % 5 == 0) {
-                return "Buzz";
+                        return "Buzz";
             }
-            return String.valueOf(n);
+                    return String.valueOf(n);
         });// TODO
     }
 }
