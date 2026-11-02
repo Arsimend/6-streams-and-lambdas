@@ -1,6 +1,7 @@
 package part04;
 
 import java.util.List;
+import java.util.function.IntUnaryOperator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -22,17 +23,13 @@ import java.util.stream.Stream;
  */
 public class MappingStreams {
 
-    /**
-     * Returns a stream where all the numbers in the given stream are doubled
-     * (multiplied by 2).
-     *
-     * @param numbers the stream of numbers to double
-     * @return a stream of doubled numbers
-     */
     public IntStream doubleValuesInStream(IntStream numbers) {
         // hint: use the map() method to double the values in the stream.
-        return null; // TODO
-    }
+      return numbers.map(this::doubleNumber);// TODO
+    } 
+    private int doubleNumber(int number) {
+    return number * 2;
+}
 
     /**
      * Returns a stream where all the numbers in the given stream are multiplied by
@@ -44,7 +41,11 @@ public class MappingStreams {
      */
     public IntStream multiplyValuesInStream(IntStream numbers, int multiplier) {
         // hint: use the map() method to multiply the values in the stream.
-        return null; // TODO
+        return numbers.map(new IntUnaryOperator() {
+            public int applyAsInt(int number) {
+                return  number * multiplier;
+            }
+        }); // TODO
     }
 
     /**
@@ -58,7 +59,7 @@ public class MappingStreams {
          * hint: First, use the stream() method to create a Stream<Integer>.
          * Then, use mapToInt() method to convert that to an IntStream.
          */
-        return null; // TODO
+        return numbers.stream().mapToInt(Integer::intValue); // TODO
     }
 
     /**
@@ -76,7 +77,7 @@ public class MappingStreams {
      */
     public Stream<String> prefixAllStrings(Stream<String> strings, String prefix) {
         // hint: once again, use the map() method to add the prefix
-        return null; // TODO
+        return strings.map(s -> prefix + s); // TODO
     }
 
     /**
@@ -92,7 +93,7 @@ public class MappingStreams {
      * @return a stream of strings with the suffix added
      */
     public Stream<String> suffixAllStrings(Stream<String> strings, String suffix) {
-        return null; // TODO
+        return strings.map(s-> s + suffix); // TODO
     }
 
     /**
@@ -113,7 +114,7 @@ public class MappingStreams {
          * hint: If your expression is too complex, you can define a separate method
          * that you call from the lambda expression.
          */
-        return null; // TODO
+        return strings.map( s -> s.endsWith(suffix)? s.substring (0, s.length() - suffix.length()):s); // TODO
     }
 
     /**
@@ -137,6 +138,16 @@ public class MappingStreams {
          */
 
         // hint: see the mapToObj() method in IntStream
-        return null; // TODO
+        return numbers.mapToObj(n -> {
+            if (n% 15 == 0) {
+                return "FizzBuzz";
+                
+            }else if (n % 3 == 0) {
+                return "Fizz";
+            } else if (n % 5 == 0) {
+                return "Buzz";
+            }
+            return String.valueOf(n);
+        });// TODO
     }
 }
